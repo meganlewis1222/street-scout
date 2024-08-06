@@ -1,5 +1,6 @@
 package xyz.streetscout.vendor.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class VendorServiceImpl implements VendorService {
                 entity.getLocation(),
                 entity.getOperatingHours(),
                 entity.getMenu()
-        )).orElse(null);
+        )).orElseThrow(() -> new EntityNotFoundException("Vendor not found"));
     }
 
     /**
@@ -92,7 +93,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public VendorDetails updateVendor(Long vendorId,VendorUpdate vendorUpdate) throws Exception {
         Vendor vendor = vendorRepository.findById(vendorId)
-                .orElseThrow(() -> new Exception("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         if (vendorUpdate.description() != null && !vendorUpdate.description().isEmpty()) {
             vendor.setDescription(vendorUpdate.description());
