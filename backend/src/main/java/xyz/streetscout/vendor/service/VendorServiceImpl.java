@@ -139,7 +139,7 @@ public class VendorServiceImpl implements VendorService {
      * @param vendorId Vendor id
      */
     @Override
-    public void deactivateVendor(Long vendorId) throws Exception {
+    public void deactivateVendor(Long vendorId) {
         vendorRepository.deleteById(vendorId);
     }
 }
