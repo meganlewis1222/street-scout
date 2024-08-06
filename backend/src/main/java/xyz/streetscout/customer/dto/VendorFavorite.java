@@ -1,4 +1,6 @@
 package xyz.streetscout.customer.dto;
 
-public record VendorFavorite() {
+import xyz.streetscout.vendor.dto.VendorDetails;
+
+public record VendorFavorite(VendorDetails vendor) {
 }

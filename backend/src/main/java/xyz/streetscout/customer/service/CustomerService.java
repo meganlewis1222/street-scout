@@ -6,9 +6,9 @@ import xyz.streetscout.customer.dto.FavoritesList;
 import xyz.streetscout.customer.dto.VendorFavorite;
 
 public interface CustomerService {
-    CustomerProfile getCustomerProfile();
+    CustomerProfile getCustomerProfile(Long customerId);
 
-    CustomerProfile updateCustomerProfile(CustomerUpdate customerUpdate);
+    CustomerProfile updateCustomerProfile(Long customerId,CustomerUpdate customerUpdate)throws Exception;
 
     FavoritesList addFavorite(VendorFavorite vendorFavorite);
 
