@@ -20,14 +20,14 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("")
-    public ResponseEntity<CustomerProfile> getCustomerProfile(){
-        CustomerProfile customer = customerService.getCustomerProfile();
+    public ResponseEntity<CustomerProfile> getCustomerProfile(@PathVariable Long userId){
+        CustomerProfile customer = customerService.getCustomerProfile(userId);
         return ResponseEntity.status(HttpStatus.OK).body(customer);
     }
 
     @PutMapping("")
-    public ResponseEntity<CustomerProfile> updateCustomerProfile(@Valid @RequestBody CustomerUpdate customerUpdate){
-        CustomerProfile updatedCustomer = customerService.updateCustomerProfile(customerUpdate);
+    public ResponseEntity<CustomerProfile> updateCustomerProfile(@PathVariable Long userId,@Valid @RequestBody CustomerUpdate customerUpdate) throws Exception{
+        CustomerProfile updatedCustomer = customerService.updateCustomerProfile(userId,customerUpdate);
         return ResponseEntity.status(HttpStatus.OK).body(updatedCustomer);
     }
 

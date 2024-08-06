@@ -1,4 +1,4 @@
 package xyz.streetscout.customer.dto;
 
-public record CustomerProfile() {
+public record CustomerProfile(String name) {
 }
