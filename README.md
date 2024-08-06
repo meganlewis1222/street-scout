@@ -96,6 +96,17 @@
 ## Setup
 
 ### [Backend](./backend/README.md)
+Copy environment variables to the [.env](.env) file
+
+```bash
+cp .env.example .env
+```
+
+Start the services
+
+```bash
+docker compose up -d
+```
 
 ### [Frontend](./frontend/README.md)
 
@@ -104,14 +115,12 @@
 ---
 
 <!-- API Reference -->
-## [API Reference](http://localhost:8080/swagger-ui.html)
-
 ### [Vendors](http://localhost:8080/api/vendors)
 - `GET /api/vendors` - List all vendors
 - `GET /api/vendors/:id` - Get vendor details
 - `POST /api/vendors` - Create new vendor
 - `PUT /api/vendors/:id` - Update vendor details
-- `DELETE /api/vendors/:id` - Delete vendor
+- `DELETE /api/vendors/:id` - Deactivate vendor
 
 ### [Customers](http://localhost:8080/api/customers)
 - `GET /api/users/:id` - Get user profile
@@ -136,35 +145,36 @@
 <!-- Database Schema -->
 ## Database Schema
 
-### [Vendor Table]()
-- `id`: string;
+### [Vendor Table](backend/src%2Fmain%2Fjava%2Fxyz%2Fstreetscout%2Fvendor%2Fentity%2FVendor.java)
+- `id`: number;
 - `name`: string;
 - `description`: string;
 - `location`:
-   - `latitude`: number;
-   - `longitude`: number;
+  - `latitude`: number;
+  - `longitude`: number;
 - `operatingHours`:
-   - `open`: string;
-   - `close`: string;
+  - `open`: string;
+  - `close`: string;
 - `menu`: [MenuItem](#menuitem-table)[];
 - `photos`: string[];
 - `reviews`: [Review](#review-table)[];
+- `is_active`: boolean
 
 ### [Customer Table]()
-- `id`: string;
+- `id`: number;
 - `name`: string;
 - `email`: string;
 - `favoriteVendors`: string[];
 
-### [Review Table]()
-- `id`: string;
+### [Review Table](backend/src%2Fmain%2Fjava%2Fxyz%2Fstreetscout%2Freview%2Fentity%2FReview.java)
+- `id`: number;
 - `userId`: string;
 - `rating`: number;
 - `text`: string;
 - `createdAt`: Timestamp;
 
-### [MenuItem Table]()
-- `id`: string;
+### [MenuItem Table](backend/src%2Fmain%2Fjava%2Fxyz%2Fstreetscout%2Fvendor%2Fentity%2FMenuItem.java)
+- `id`: number;
 - `name`: string;
 - `description`: string;
 - `price`: number;
