@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:postgres}:${DATABASE_PORT:5432}/${DATABASE_NAME:street_scout}
+    password: ${DATABASE_PASSWORD:password}
+    username: ${DATABASE_USER:default}
