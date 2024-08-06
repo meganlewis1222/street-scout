@@ -1,5 +1,6 @@
 package xyz.streetscout.vendor.entity;
 
+import xyz.streetscout.auth.entity.UserEntity;
 import xyz.streetscout.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -44,5 +45,7 @@ public class Vendor {
     @Column(name = "reviews")
     private List<Review> reviews;
 
+    @Column(name = "email")
+    private String email;
 
 }
