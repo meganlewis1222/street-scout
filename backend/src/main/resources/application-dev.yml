@@ -6,6 +6,3 @@ spring:
     url: jdbc:h2:mem:testdb
     password: ${DATABASE_PASSWORD:password}
     username: ${DATABASE_USER:default}
-logging:
-  level:
-    root: debug
