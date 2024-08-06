@@ -68,16 +68,16 @@
 ## Technical Stack
 
 ### Frontend
-- **Framework**: React or Angular.
-- **State Management**: Redux/Context/Zustand for managing application state.
+- **Framework**: Next.js
+- **State Management**: Redux/Context/Zustand for managing application state
 
 ### Backend
 - **Framework**: Spring Boot
-- **Database**: PostgreSQL.
+- **Database**: PostgreSQL
 
 ### Hosting and Deployment
-- **Cloud Provider**: AWS, Heroku, or DigitalOcean for hosting the application.
-- **Containerization**: Vercel/Docker for containerizing the application for easier deployment and scalability.`
+- **Cloud Provider**: Vercel, AWS, Heroku, or DigitalOcean for hosting the application
+- **Containerization**: Docker for containerizing the application for easier deployment and scalability
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -86,7 +86,7 @@
 
 <!-- Core Features -->
 ## Core Features
-- **FEATURE 1**: TODO
+- **TODO**: 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,28 +95,9 @@
 <!-- Setup -->
 ## Setup
 
-Copy environment variables to the [.env](.env) file
+### [Backend](./backend/README.md)
 
-```bash
-cp .env.example .env
-```
-
-Start the services
-
-```bash
-docker compose up -d
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
----
-
-<!-- Modules -->
-## Modules
-
-### [Service A]()
-- **Functionality**: TODO
-- **Core Features**: TODO
+### [Frontend](./frontend/README.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,11 +136,10 @@ docker compose up -d
 <!-- Database Schema -->
 ## Database Schema
 
-### [VENDOR Table]()
+### [Vendor Table]()
 - `id`: string;
 - `name`: string;
 - `description`: string;
-- `cuisine`: string[];
 - `location`:
    - `latitude`: number;
    - `longitude`: number;
@@ -170,13 +150,13 @@ docker compose up -d
 - `photos`: string[];
 - `reviews`: [Review](#review-table)[];
 
-### [CUSTOMER Table]()
+### [Customer Table]()
 - `id`: string;
 - `name`: string;
 - `email`: string;
 - `favoriteVendors`: string[];
 
-### [REVIEW Table]()
+### [Review Table]()
 - `id`: string;
 - `userId`: string;
 - `rating`: number;
@@ -196,7 +176,7 @@ docker compose up -d
 <!-- Implementation Steps -->
 ## Implementation Steps
 
-1. 
+1. TODO
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -225,7 +205,6 @@ docker compose up -d
 ## Contributors
 
 
-
 [Street Scout][repo-url]
 
 
@@ -245,10 +224,9 @@ docker compose up -d
 [issues-shield]: https://img.shields.io/github/issues/aye-shadow/street-scout.svg?style=for-the-badge
 [issues-url]: https://github.com/aye-shadow/street-scout/issues
 [license-shield]: https://img.shields.io/github/license/aye-shadow/street-scout.svg?style=for-the-badge
-[license-url]: https://github.com/aye-shadow/street-scout/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=0A66C2
+[license-url]: https://github.com/aye-shadow/street-scout/blob/master/LICENSE
 [live-demo-shield]: https://img.shields.io/badge/demo-offline-red.svg?style=for-the-badge
 [live-demo-url]: https://filn.vercel.app
 [repo-url]: https://github.com/aye-shadow/street-scout
 [porfolio-shield]: https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white
-[portfolio-url]: https://streetscount.xyz/
+[portfolio-url]: https://streetscout.xyz/
