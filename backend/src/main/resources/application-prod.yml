@@ -3,6 +3,10 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:street-scout-database-1.cfwiacugifx6.us-east-1.rds.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:street_scout}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:street_scout}
     password: ${DATABASE_PASSWORD:password}
     username: ${DATABASE_USER:postgres}
+    hikari:
+      connection-timeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000

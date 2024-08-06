@@ -15,17 +15,19 @@ services:
       - postgres
     restart: unless-stopped
 
-#  backend:
-#    image: macchiato23/street-scout-be:latest
-#    container_name: street_scout_backend
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=dev
-#    networks:
-#      - postgres
-#    depends_on:
-#      - postgres
+  backend:
+    image: macchiato23/street-scout-be:latest
+    container_name: street_scout_backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_USER: ${DATABASE_USER}
+    networks:
+      - postgres
+    depends_on:
+      - postgres
 
 networks:
   postgres:
