@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:street-scout-database-1.cfwiacugifx6.us-east-1.rds.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:street_scout}
+    password: ${DATABASE_PASSWORD:password}
+    username: ${DATABASE_USER:postgres}
