@@ -72,8 +72,8 @@
 - **State Management**: Redux/Context/Zustand for managing application state.
 
 ### Backend
-- **Framework**: Spring Boot/NextJs/Express.
-- **Database**: PostgreSQL/Firebase.
+- **Framework**: Spring Boot
+- **Database**: PostgreSQL.
 
 ### Hosting and Deployment
 - **Cloud Provider**: AWS, Heroku, or DigitalOcean for hosting the application.
@@ -123,25 +123,28 @@ docker compose up -d
 ---
 
 <!-- API Reference -->
-## [API Reference](http://localhost:3000/api)
+## [API Reference](http://localhost:8080/swagger-ui.html)
 
-### [Vendors](http://localhost:3000/api/vendors)
+### [Vendors](http://localhost:8080/api/vendors)
 - `GET /api/vendors` - List all vendors
 - `GET /api/vendors/:id` - Get vendor details
 - `POST /api/vendors` - Create new vendor
 - `PUT /api/vendors/:id` - Update vendor details
 - `DELETE /api/vendors/:id` - Delete vendor
-### [Customers](http://localhost:3000/api/customers)
+
+### [Customers](http://localhost:8080/api/customers)
 - `GET /api/users/:id` - Get user profile
 - `PUT /api/users/:id` - Update user profile
 - `POST /api/users/:id/favorites` - Add vendor to favorites
 - `DELETE /api/users/:id/favorites/:vendorId` - Remove vendor from favorites
-### [Reviews](http://localhost:3000/api/reviews)
+
+### [Reviews](http://localhost:8080/api/reviews)
 - `GET /api/vendors/:id/reviews` - List reviews for a vendor
 - `POST /api/vendors/:id/reviews` - Add a review
 - `PUT /api/vendors/:id/reviews/:reviewId` - Update a review
 - `DELETE /api/vendors/:id/reviews/:reviewId` - Delete a review
-### [Search](http://localhost:3000/api/search)
+
+### [Search](http://localhost:8080/api/search)
 - `GET /api/search?q=query&lat=latitude&lng=longitude` - Search vendors by query and location
 
 
@@ -152,35 +155,39 @@ docker compose up -d
 <!-- Database Schema -->
 ## Database Schema
 
-### [VENDOR]()
+### [VENDOR Table]()
 - `id`: string;
 - `name`: string;
 - `description`: string;
 - `cuisine`: string[];
 - `location`:
-  - `latitude`: number;
-  - `longitude`: number;- 
+   - `latitude`: number;
+   - `longitude`: number;
 - `operatingHours`:
-  - `open`: string;
-  - `close`: string;
-- `menu[itemId]`: 
-  - `name`: string;
-  - `description`: string;
-  - `price`: number;
+   - `open`: string;
+   - `close`: string;
+- `menu`: [MenuItem](#menuitem-table)[];
 - `photos`: string[];
-- `avgRating`: number;
+- `reviews`: [Review](#review-table)[];
 
-### [CUSTOMER]()
+### [CUSTOMER Table]()
 - `id`: string;
 - `name`: string;
 - `email`: string;
 - `favoriteVendors`: string[];
-### [REVIEW]()
+
+### [REVIEW Table]()
 - `id`: string;
 - `userId`: string;
 - `rating`: number;
 - `text`: string;
 - `createdAt`: Timestamp;
+
+### [MenuItem Table]()
+- `id`: string;
+- `name`: string;
+- `description`: string;
+- `price`: number;
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -189,6 +196,7 @@ docker compose up -d
 <!-- Implementation Steps -->
 ## Implementation Steps
 
+1. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -213,11 +221,10 @@ docker compose up -d
 
 ---
 
-<!-- CONTACT -->
-## Contact
+<!-- CONTRIBUTORS -->
+## Contributors
 
 
-[![portfolio][porfolio-shield]][live-demo-url]
 
 [Street Scout][repo-url]
 
@@ -240,9 +247,8 @@ docker compose up -d
 [license-shield]: https://img.shields.io/github/license/aye-shadow/street-scout.svg?style=for-the-badge
 [license-url]: https://github.com/aye-shadow/street-scout/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=0A66C2
-[linkedin-url]: https://www.linkedin.com/in/devin-catuns/
 [live-demo-shield]: https://img.shields.io/badge/demo-offline-red.svg?style=for-the-badge
 [live-demo-url]: https://filn.vercel.app
 [repo-url]: https://github.com/aye-shadow/street-scout
 [porfolio-shield]: https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white
-[portfolio-url]: https://street-scount.com/
+[portfolio-url]: https://streetscount.xyz/
