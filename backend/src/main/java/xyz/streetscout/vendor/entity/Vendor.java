@@ -1,5 +1,6 @@
 package xyz.streetscout.vendor.entity;
 
+import xyz.streetscout.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.Data;
 import xyz.streetscout.review.entity.Review;
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "vendors")
+@Table(name = "vendor")
 public class Vendor {
 
     @Id

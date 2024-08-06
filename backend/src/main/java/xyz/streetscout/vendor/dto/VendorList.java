@@ -1,4 +1,6 @@
 package xyz.streetscout.vendor.dto;
 
-public record VendorList() {
+import java.util.List;
+
+public record VendorList(List<VendorDetails> vendors) {
 }

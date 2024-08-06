@@ -1,7 +1,9 @@
 package xyz.streetscout.vendor.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "menu_items")
 public class MenuItem {
