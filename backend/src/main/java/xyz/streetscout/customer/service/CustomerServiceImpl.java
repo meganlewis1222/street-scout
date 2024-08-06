@@ -1,31 +1,37 @@
 package xyz.streetscout.customer.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.streetscout.customer.dto.CustomerProfile;
 import xyz.streetscout.customer.dto.CustomerUpdate;
-import xyz.streetscout.customer.dto.FavoritesList;
-import xyz.streetscout.customer.dto.VendorFavorite;
 import xyz.streetscout.customer.entity.Customer;
+import xyz.streetscout.customer.mapper.CustomerMapper;
 import xyz.streetscout.customer.repository.CustomerRepository;
+import xyz.streetscout.vendor.entity.Vendor;
+import xyz.streetscout.vendor.repository.VendorRepository;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class CustomerServiceImpl implements CustomerService {
 
-    CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
+    private final CustomerRepository customerRepository;
+    private final VendorRepository vendorRepository;
 
     /**
      * @return CustomerProfile
      */
     @Override
     public CustomerProfile getCustomerProfile(Long customerId) {
-        Optional<Customer> customerOpt = customerRepository.findById(customerId);
-        return customerOpt.map(customer -> new CustomerProfile(customer.getName())).orElse(null);
+        Customer customer = findById(customerId);
+        return customerMapper.toProfile(customer);
     }
 
     /**
@@ -33,36 +39,57 @@ public class CustomerServiceImpl implements CustomerService {
      * @return CustomerProfile
      */
     @Override
-    public CustomerProfile updateCustomerProfile(Long customerId,CustomerUpdate customerUpdate) throws Exception {
-        Customer customer = customerRepository.findById(customerId).orElseThrow(()->new Exception("customer not found"));
+    public CustomerProfile updateCustomerProfile(Long customerId, CustomerUpdate customerUpdate) {
+        Customer customer = findById(customerId);
 
-            if (customerUpdate.favouriteVendors() != null && !customerUpdate.favouriteVendors().isEmpty()) {
-                List<String> updatedVendors = customer.getFavouriteVendors();
-                updatedVendors.addAll(customerUpdate.favouriteVendors());
-                List<String> uniqueVendors = updatedVendors.stream().distinct().toList();
-                customer.setFavouriteVendors(uniqueVendors);
-            }
-            customerRepository.save(customer);
+        if (customerUpdate.favouriteVendors() != null && !customerUpdate.favouriteVendors().isEmpty()) {
+            Set<String> updatedVendors = customer.getFavouriteVendors();
+            updatedVendors.addAll(customerUpdate.favouriteVendors());
+            Set<String> uniqueVendors = new HashSet<>(updatedVendors);;
+            customer.setFavouriteVendors(uniqueVendors);
+        }
 
-        return new CustomerProfile(customer.getName());
+        customerMapper.update(customerUpdate, customer);
+        Customer saved = customerRepository.save(customer);
+        return customerMapper.toProfile(saved);
 
     }
 
     /**
-     * @param vendorFavorite Vendor to favorite Details
+     * @param customerId Customer id
+     * @param vendorId   Vendor id
      * @return FavoritesList
      */
     @Override
-    public FavoritesList addFavorite(VendorFavorite vendorFavorite) {
-        return null;
+    public CustomerProfile addFavorite(Long customerId, Long vendorId) {
+        Customer customer = findById(customerId);
+        Vendor vendor = findVendorById(vendorId);
+
+        customer.addFavorite(vendor);
+        Customer saved = customerRepository.save(customer);
+
+        return customerMapper.toProfile(saved);
+    }
+
+    private Vendor findVendorById(Long vendorId) {
+        return vendorRepository.findById(vendorId)
+                .orElseThrow(() -> new EntityNotFoundException("vendor not found"));
+    }
+
+    private Customer findById(Long customerId) {
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new EntityNotFoundException("customer not found"));
     }
 
     /**
-     * @param vendorFavorite  Vendor details
+     * @param customerId Customer id
+     * @param vendorId   Vendor id
      */
     @Override
-    public void removeFavorite(VendorFavorite vendorFavorite) {
-        customerRepository.delete(vendorFavorite);
-
+    public void removeFavorite(Long customerId, Long vendorId) {
+        Customer customer = findById(customerId);
+        Vendor vendor = findVendorById(vendorId);
+        customer.removeFavorite(vendor);
+        customerRepository.save(customer);
     }
 }

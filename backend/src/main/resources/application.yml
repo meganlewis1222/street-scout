@@ -5,10 +5,15 @@ spring:
   application:
     name: street-scout
   profiles:
-    active: local
+    active: dev
   jpa:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
