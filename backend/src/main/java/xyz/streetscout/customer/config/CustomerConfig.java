@@ -12,7 +12,7 @@ import xyz.streetscout.customer.repository.CustomerRepository;
 public class CustomerConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(CustomerRepository customerRepository) {
+    CommandLineRunner customerCommandLineRunner(CustomerRepository customerRepository) {
 
         return args -> {
             createCustomer(customerRepository);

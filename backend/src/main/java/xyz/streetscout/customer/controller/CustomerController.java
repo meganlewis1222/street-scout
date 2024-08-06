@@ -39,8 +39,9 @@ public class CustomerController {
     }
 
     @DeleteMapping("/favorites/{vendorId}")
-    public ResponseEntity<Void> removeVendorFromFavorites(@PathVariable("vendorId") Long vendorId){
-        customerService.removeFavorite(vendorId);
+    public ResponseEntity<Void> removeVendorFromFavorites(
+            @PathVariable("vendorId") Long vendorId, @PathVariable("userId") Long customerId){
+        customerService.removeFavorite(customerId, vendorId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

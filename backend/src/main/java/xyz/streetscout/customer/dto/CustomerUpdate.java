@@ -1,9 +1,9 @@
 package xyz.streetscout.customer.dto;
 
-import java.util.List;
+import java.util.Set;
 
 public record CustomerUpdate(
         String name,
-        List<String> favouriteVendors
+        Set<String> favouriteVendors
 ) {
 }

@@ -5,7 +5,9 @@ import lombok.Data;
 import xyz.streetscout.vendor.entity.Vendor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -27,13 +29,21 @@ public class Customer {
     @CollectionTable(name = "favourite_vendors",
             joinColumns = @JoinColumn(name = "customer_id"))
     @Column(name = "vendor_name")
-    private List<String> favouriteVendors;
+    private Set<String> favouriteVendors;
 
     public void addFavorite(Vendor vendor) {
         if (favouriteVendors == null) {
-            favouriteVendors = new ArrayList<>();
+            favouriteVendors = new HashSet<>();
         }
 
         favouriteVendors.add(vendor.getName());
+    }
+
+    public void removeFavorite(Vendor vendor) {
+        if (favouriteVendors == null) {
+            favouriteVendors = new HashSet<>();
+        }
+
+        favouriteVendors.remove(vendor.getName());
     }
 }

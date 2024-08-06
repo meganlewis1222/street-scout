@@ -12,7 +12,10 @@ import xyz.streetscout.customer.repository.CustomerRepository;
 import xyz.streetscout.vendor.entity.Vendor;
 import xyz.streetscout.vendor.repository.VendorRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -40,9 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = findById(customerId);
 
         if (customerUpdate.favouriteVendors() != null && !customerUpdate.favouriteVendors().isEmpty()) {
-            List<String> updatedVendors = customer.getFavouriteVendors();
+            Set<String> updatedVendors = customer.getFavouriteVendors();
             updatedVendors.addAll(customerUpdate.favouriteVendors());
-            List<String> uniqueVendors = updatedVendors.stream().distinct().toList();
+            Set<String> uniqueVendors = new HashSet<>(updatedVendors);;
             customer.setFavouriteVendors(uniqueVendors);
         }
 
@@ -79,11 +82,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
-     * @param vendorId  Vendor id
+     * @param customerId Customer id
+     * @param vendorId   Vendor id
      */
     @Override
-    public void removeFavorite(Long vendorId) {
-//        customerRepository.delete(vendorFavorite);
-
+    public void removeFavorite(Long customerId, Long vendorId) {
+        Customer customer = findById(customerId);
+        Vendor vendor = findVendorById(vendorId);
+        customer.removeFavorite(vendor);
+        customerRepository.save(customer);
     }
 }

@@ -1,6 +1,5 @@
 package xyz.streetscout.vendor.dto;
 
-import xyz.streetscout.review.entity.Review;
 import xyz.streetscout.vendor.entity.Location;
 import xyz.streetscout.vendor.entity.MenuItem;
 import xyz.streetscout.vendor.entity.OperatingHours;
@@ -8,6 +7,13 @@ import xyz.streetscout.vendor.entity.OperatingHours;
 import java.util.List;
 import java.util.Set;
 
-public record VendorDetails(Long id, String name, String description, List<String> photos, Location location,
-                            OperatingHours operatingHours, Set<MenuItem> menu) {
+public record VendorDetails(
+        Long id,
+        String name,
+        String description,
+        List<String> photos,
+        Location location,
+        OperatingHours operatingHours,
+        Set<MenuItem> menu
+) {
 }
