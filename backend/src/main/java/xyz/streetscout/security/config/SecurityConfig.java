@@ -35,9 +35,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/vendor/**").hasAnyAuthority("VENDOR","ADMIN")
-                        .requestMatchers("/customer/**").hasAnyAuthority("CUSTOMER","ADMIN")
+                        .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/vendors/**").hasAnyAuthority("VENDOR","ADMIN")
+                        .requestMatchers("/api/customers/**").hasAnyAuthority("CUSTOMER","ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

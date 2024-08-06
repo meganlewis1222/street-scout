@@ -13,7 +13,7 @@ public interface VendorService {
 
     VendorDetails registerVendor(VendorRegistration vendorRegistration);
 
-    VendorDetails updateVendor(VendorUpdate vendorUpdate);
+    VendorDetails updateVendor(Long vendorId,VendorUpdate vendorUpdate) throws Exception;
 
-    void deactivateVendor(Long vendorId);
+    void deactivateVendor(Long vendorId) throws Exception;
 }

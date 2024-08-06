@@ -1,9 +1,11 @@
 package xyz.streetscout.vendor.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "operating_hours")
 public class OperatingHours {

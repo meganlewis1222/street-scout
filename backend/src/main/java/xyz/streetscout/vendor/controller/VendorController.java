@@ -38,13 +38,13 @@ public class VendorController {
     }
 
     @PutMapping("/{vendorId}")
-    public ResponseEntity<VendorDetails> updateVendor(@Valid @RequestBody VendorUpdate vendorUpdate){
-        VendorDetails vendor = vendorService.updateVendor(vendorUpdate);
+    public ResponseEntity<VendorDetails> updateVendor(@Valid @RequestBody VendorUpdate vendorUpdate,@PathVariable Long vendorId) throws Exception {
+        VendorDetails vendor = vendorService.updateVendor(vendorId,vendorUpdate);
         return ResponseEntity.status(HttpStatus.OK).body(vendor);
     }
 
     @DeleteMapping("/{vendorId}")
-    public ResponseEntity<Void> deactivateVendor(@PathVariable Long vendorId){
+    public ResponseEntity<Void> deactivateVendor(@PathVariable Long vendorId) throws Exception {
         vendorService.deactivateVendor(vendorId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
