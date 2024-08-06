@@ -1,4 +1,4 @@
-package xyz.streetscout.user;
+package xyz.streetscout.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
