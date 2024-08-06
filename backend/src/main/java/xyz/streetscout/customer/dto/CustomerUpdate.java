@@ -1,4 +1,6 @@
 package xyz.streetscout.customer.dto;
 
-public record CustomerUpdate() {
+import java.util.List;
+
+public record CustomerUpdate(List<String> favouriteVendors) {
 }
