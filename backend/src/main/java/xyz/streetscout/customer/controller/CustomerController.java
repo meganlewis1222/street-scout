@@ -24,7 +24,8 @@ public class CustomerController {
     }
 
     @PutMapping("")
-    public ResponseEntity<CustomerProfile> updateCustomerProfile(@PathVariable Long userId, @Valid @RequestBody CustomerUpdate customerUpdate) throws Exception{
+    public ResponseEntity<CustomerProfile> updateCustomerProfile(@PathVariable Long userId,
+                                                                 @Valid @RequestBody CustomerUpdate customerUpdate) {
         CustomerProfile updatedCustomer = customerService.updateCustomerProfile(userId, customerUpdate);
         return ResponseEntity.status(HttpStatus.OK).body(updatedCustomer);
     }

@@ -18,9 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class CustomerServiceImpl implements CustomerService {
 
-    CustomerMapper customerMapper = CustomerMapper.INSTANCE;
-    CustomerRepository customerRepository;
-    VendorRepository vendorRepository;
+    private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
+    private final CustomerRepository customerRepository;
+    private final VendorRepository vendorRepository;
 
     /**
      * @return CustomerProfile
@@ -39,15 +39,15 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerProfile updateCustomerProfile(Long customerId, CustomerUpdate customerUpdate) {
         Customer customer = findById(customerId);
 
-            if (customerUpdate.favouriteVendors() != null && !customerUpdate.favouriteVendors().isEmpty()) {
-                List<String> updatedVendors = customer.getFavouriteVendors();
-                updatedVendors.addAll(customerUpdate.favouriteVendors());
-                List<String> uniqueVendors = updatedVendors.stream().distinct().toList();
-                customer.setFavouriteVendors(uniqueVendors);
-            }
+        if (customerUpdate.favouriteVendors() != null && !customerUpdate.favouriteVendors().isEmpty()) {
+            List<String> updatedVendors = customer.getFavouriteVendors();
+            updatedVendors.addAll(customerUpdate.favouriteVendors());
+            List<String> uniqueVendors = updatedVendors.stream().distinct().toList();
+            customer.setFavouriteVendors(uniqueVendors);
+        }
 
+        customerMapper.update(customerUpdate, customer);
         Customer saved = customerRepository.save(customer);
-
         return customerMapper.toProfile(saved);
 
     }
@@ -60,13 +60,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerProfile addFavorite(Long customerId, Long vendorId) {
         Customer customer = findById(customerId);
-        Vendor vendor = vendorRepository.findById(vendorId)
-                .orElseThrow(() -> new EntityNotFoundException("vendor not found"));
+        Vendor vendor = findVendorById(vendorId);
 
         customer.addFavorite(vendor);
         Customer saved = customerRepository.save(customer);
 
         return customerMapper.toProfile(saved);
+    }
+
+    private Vendor findVendorById(Long vendorId) {
+        return vendorRepository.findById(vendorId)
+                .orElseThrow(() -> new EntityNotFoundException("vendor not found"));
     }
 
     private Customer findById(Long customerId) {

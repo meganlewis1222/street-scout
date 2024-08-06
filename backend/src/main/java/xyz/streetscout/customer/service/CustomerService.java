@@ -6,7 +6,7 @@ import xyz.streetscout.customer.dto.CustomerUpdate;
 public interface CustomerService {
     CustomerProfile getCustomerProfile(Long customerId);
 
-    CustomerProfile updateCustomerProfile(Long customerId,CustomerUpdate customerUpdate)throws Exception;
+    CustomerProfile updateCustomerProfile(Long customerId,CustomerUpdate customerUpdate);
 
     CustomerProfile addFavorite(Long customerId, Long vendorId);
 
