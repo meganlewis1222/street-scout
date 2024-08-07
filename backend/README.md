@@ -63,17 +63,19 @@ docker compose up -d
 - `is_active`: boolean
 
 ### [Customer Table]()
-- `id`: number;
-- `name`: string;
-- `email`: string;
-- `favoriteVendors`: string[];
+- `id`: number
+- `name`: string
+- `email`: string
+- `favoriteVendors`: string[]
 
 ### [Review Table](src%2Fmain%2Fjava%2Fxyz%2Fstreetscout%2Freview%2Fentity%2FReview.java)
-- `id`: number;
-- `userId`: string;
-- `rating`: number;
-- `text`: string;
-- `createdAt`: Timestamp;
+- `id`: number
+- `userId`: number
+- `vendorId`: number
+- `rating`: number
+- `text`: string
+- `createdAt`: Timestamp
+- `isEnabled`: boolean
 
 ### [MenuItem Table](src%2Fmain%2Fjava%2Fxyz%2Fstreetscout%2Fvendor%2Fentity%2FMenuItem.java)
 - `id`: number;
