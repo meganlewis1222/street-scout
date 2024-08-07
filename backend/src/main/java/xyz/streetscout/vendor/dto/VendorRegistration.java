@@ -6,5 +6,5 @@ import xyz.streetscout.vendor.entity.OperatingHours;
 
 import java.util.Set;
 
-public record VendorRegistration(String name, String description, Location location, OperatingHours operatingHours, Set<MenuItem> menu) {
+public record VendorRegistration(String email,String name, String description, Location location, OperatingHours operatingHours, Set<MenuItem> menu) {
 }
