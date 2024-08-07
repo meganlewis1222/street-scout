@@ -14,9 +14,7 @@ import xyz.streetscout.vendor.entity.Vendor;
 import xyz.streetscout.vendor.repository.VendorRepository;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)

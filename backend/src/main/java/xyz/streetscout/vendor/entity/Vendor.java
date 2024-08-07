@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import xyz.streetscout.review.entity.Review;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,4 +49,11 @@ public class Vendor {
     @Column(name = "email")
     private String email;
 
+    public void addReview(Review review) {
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(review);
+        review.setVendor(this);
+    }
 }

@@ -6,8 +6,15 @@ import xyz.streetscout.vendor.entity.MenuItem;
 import xyz.streetscout.vendor.entity.OperatingHours;
 
 import java.util.Set;
+
 @Schema(
-        name = "VendorRegistration",
-        description = "Schema to hold new Vendor details")
-public record VendorRegistration(String email,String name, String description, Location location, OperatingHours operatingHours, Set<MenuItem> menu) {
+    name = "VendorRegistration",
+    description = "Schema to hold new Vendor details")
+public record VendorRegistration(
+        String name,
+        String description,
+        Location location,
+        OperatingHours operatingHours,
+        Set<MenuItem> menu
+) {
 }

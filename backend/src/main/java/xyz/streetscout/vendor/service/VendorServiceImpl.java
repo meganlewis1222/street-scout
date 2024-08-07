@@ -62,21 +62,6 @@ public class VendorServiceImpl implements VendorService {
         )).orElseThrow(() -> new EntityNotFoundException("Vendor not found"));
     }
 
-    @Override
-    public VendorDetails getVendorByEmail(String email) {
-        Vendor vendor=vendorRepository.findByEmail(email);
-        return new VendorDetails(
-                vendor.getId(),
-                vendor.getName(),
-                vendor.getDescription(),
-                vendor.getPhotos(),
-                vendor.getLocation(),
-                vendor.getOperatingHours(),
-                vendor.getMenu(),
-                vendor.getEmail()
-        );
-    }
-
     /**
      * @param vendorRegistration Initial Vendor information
      * @return VendorDetails
@@ -112,7 +97,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public VendorDetails updateVendor(Long vendorId,VendorUpdate vendorUpdate) throws Exception {
         Vendor vendor = vendorRepository.findById(vendorId)
-                .orElseThrow(() -> new Exception("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         if (vendorUpdate.description() != null && !vendorUpdate.description().isEmpty()) {
             vendor.setDescription(vendorUpdate.description());
@@ -160,7 +145,7 @@ public class VendorServiceImpl implements VendorService {
      * @param vendorId Vendor id
      */
     @Override
-    public void deactivateVendor(Long vendorId) throws Exception {
+    public void deactivateVendor(Long vendorId) {
         vendorRepository.deleteById(vendorId);
     }
 }

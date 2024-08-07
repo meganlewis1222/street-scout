@@ -17,5 +17,5 @@ public interface VendorService {
 
     VendorDetails updateVendor(Long vendorId,VendorUpdate vendorUpdate) throws Exception;
 
-    void deactivateVendor(Long vendorId) throws Exception;
+    void deactivateVendor(Long vendorId);
 }
