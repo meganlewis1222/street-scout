@@ -34,7 +34,8 @@ public class VendorServiceImpl implements VendorService {
                         entity.getPhotos(),
                         entity.getLocation(),
                         entity.getOperatingHours(),
-                        entity.getMenu()
+                        entity.getMenu(),
+                        entity.getEmail()
                 ))
                 .collect(Collectors.toList());
 
@@ -56,7 +57,8 @@ public class VendorServiceImpl implements VendorService {
                 entity.getPhotos(),
                 entity.getLocation(),
                 entity.getOperatingHours(),
-                entity.getMenu()
+                entity.getMenu(),
+                entity.getEmail()
         )).orElseThrow(() -> new EntityNotFoundException("Vendor not found"));
     }
 
@@ -72,6 +74,7 @@ public class VendorServiceImpl implements VendorService {
         vendor.setLocation(vendorRegistration.location());
         vendor.setOperatingHours(vendorRegistration.operatingHours());
         vendor.setMenu(vendorRegistration.menu());
+        vendor.setEmail(vendorRegistration.email());
 
         Vendor savedVendor = vendorRepository.save(vendor);
 
@@ -82,7 +85,8 @@ public class VendorServiceImpl implements VendorService {
                 savedVendor.getPhotos(),
                 savedVendor.getLocation(),
                 savedVendor.getOperatingHours(),
-                savedVendor.getMenu()
+                savedVendor.getMenu(),
+                savedVendor.getEmail()
         );
     }
 
@@ -132,7 +136,8 @@ public class VendorServiceImpl implements VendorService {
                 updatedVendor.getPhotos(),
                 updatedVendor.getLocation(),
                 updatedVendor.getOperatingHours(),
-                updatedVendor.getMenu()
+                updatedVendor.getMenu(),
+                updatedVendor.getEmail()
         );
     }
 

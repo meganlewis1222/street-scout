@@ -14,6 +14,7 @@ public record VendorDetails(
         List<String> photos,
         Location location,
         OperatingHours operatingHours,
-        Set<MenuItem> menu
+        Set<MenuItem> menu,
+        String email
 ) {
 }

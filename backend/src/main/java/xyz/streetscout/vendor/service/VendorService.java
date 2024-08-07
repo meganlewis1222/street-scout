@@ -11,6 +11,8 @@ public interface VendorService {
 
     VendorDetails getVendorById(Long vendorId);
 
+    VendorDetails getVendorByEmail(String email);
+
     VendorDetails registerVendor(VendorRegistration vendorRegistration);
 
     VendorDetails updateVendor(Long vendorId,VendorUpdate vendorUpdate) throws Exception;

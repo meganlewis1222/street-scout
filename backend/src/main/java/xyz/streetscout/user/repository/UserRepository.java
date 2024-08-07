@@ -1,4 +1,4 @@
-package xyz.streetscout.user.repo;
+package xyz.streetscout.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import xyz.streetscout.user.entity.User;

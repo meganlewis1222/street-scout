@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import xyz.streetscout.user.repo.UserRepository;
+import xyz.streetscout.user.repository.UserRepository;
 
 @Service
 public class CustomuserDetailsService implements UserDetailsService {
