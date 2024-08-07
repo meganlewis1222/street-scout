@@ -81,6 +81,8 @@ public class ReviewServiceImpl implements ReviewService {
      */
     @Override
     public void disableReview(Long vendorId, Long reviewId) {
-
+        Review review = findById(reviewId);
+        review.setEnabled(false);
+        reviewRepository.save(review);
     }
 }
