@@ -21,7 +21,9 @@ public class Review {
     @OneToOne(fetch = FetchType.EAGER)
     private Customer reviewer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH})
     private Vendor vendor;
 
     @Column(name = "rating", nullable = false)
@@ -37,4 +39,18 @@ public class Review {
     @Column(name = "is_enabled", nullable = false)
     private boolean isEnabled = true;
 
+    @Override
+    public String toString() {
+        String reviewerName = reviewer != null ? reviewer.getName() : "";
+        String vendorName = vendor != null ? vendor.getName() : "";
+        return "Review{" +
+                "id=" + id +
+                ", reviewer='" + reviewerName + '\'' +
+                ", vendor='" + vendorName + '\'' +
+                ", rating=" + rating +
+                ", text='" + text + '\'' +
+                ", createdAt=" + createdAt +
+                ", isEnabled=" + isEnabled +
+                '}';
+    }
 }

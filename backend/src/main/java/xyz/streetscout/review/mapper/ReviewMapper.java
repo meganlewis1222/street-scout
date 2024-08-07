@@ -1,11 +1,11 @@
 package xyz.streetscout.review.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import xyz.streetscout.review.dto.ReviewCreation;
 import xyz.streetscout.review.dto.ReviewDetails;
+import xyz.streetscout.review.dto.ReviewEdit;
 import xyz.streetscout.review.dto.ReviewList;
 import xyz.streetscout.review.entity.Review;
 
@@ -26,4 +26,7 @@ public interface ReviewMapper {
     @Mapping(target = "vendorId", source = "vendor.id")
     @Mapping(target = "vendor", source = "vendor.name")
     ReviewDetails toReviewDetails(Review review);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void update(ReviewEdit reviewEdit, @MappingTarget Review review);
 }

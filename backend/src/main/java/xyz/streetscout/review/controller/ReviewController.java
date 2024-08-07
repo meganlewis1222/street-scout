@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.streetscout.review.dto.ReviewCreation;
 import xyz.streetscout.review.dto.ReviewDetails;
+import xyz.streetscout.review.dto.ReviewEdit;
 import xyz.streetscout.review.dto.ReviewList;
 import xyz.streetscout.review.service.ReviewService;
 
@@ -22,7 +23,7 @@ public class ReviewController {
     @GetMapping("")
     public ResponseEntity<ReviewList> getAllReviews(
             @PathVariable("vendorId") Long vendorId,
-            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ){
         PageRequest pageRequest = PageRequest.of(page, size);
@@ -41,9 +42,10 @@ public class ReviewController {
 
     @PutMapping("/{reviewId}")
     public ResponseEntity<ReviewDetails> editReview(
-            @PathVariable("vendorId") Long vendorId, @PathVariable("reviewId") Long reviewId
+            @PathVariable("reviewId") Long reviewId,
+            @RequestBody ReviewEdit reviewEdit
     ) {
-        ReviewDetails editedReview = reviewService.editReview(vendorId, reviewId);
+        ReviewDetails editedReview = reviewService.editReview(reviewId, reviewEdit);
         return ResponseEntity.status(HttpStatus.OK).body(editedReview);
     }
 
