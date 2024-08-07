@@ -22,7 +22,7 @@ public class ReviewController {
     @GetMapping("")
     public ResponseEntity<ReviewList> getAllReviews(
             @PathVariable("vendorId") Long vendorId,
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size
     ){
         PageRequest pageRequest = PageRequest.of(page, size);
@@ -31,8 +31,11 @@ public class ReviewController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ReviewDetails> createReview(@Valid @RequestBody ReviewCreation reviewCreation){
-        ReviewDetails review = reviewService.createReview(reviewCreation);
+    public ResponseEntity<ReviewDetails> createReview(
+            @PathVariable("vendorId") Long vendorId,
+            @Valid @RequestBody ReviewCreation reviewCreation
+    ){
+        ReviewDetails review = reviewService.createReview(vendorId, reviewCreation);
         return ResponseEntity.status(HttpStatus.CREATED).body(review);
     }
 

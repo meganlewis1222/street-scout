@@ -8,7 +8,7 @@ import xyz.streetscout.review.dto.ReviewList;
 public interface ReviewService {
     ReviewList getAllReviews(Long vendorId, PageRequest pageRequest);
 
-    ReviewDetails createReview(ReviewCreation reviewCreation);
+    ReviewDetails createReview(Long vendorId, ReviewCreation reviewCreation);
 
     ReviewDetails editReview(Long vendorId, Long reviewId);
 
